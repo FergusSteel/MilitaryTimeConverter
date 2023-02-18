@@ -64,18 +64,21 @@ nums_to_plain = {
 
 
 def civi_to_24hour(civi):
-    AM_PM = civi[-2:]
-    time = civi[0:-2]
-    hours, mins = time.split(":")
-    hours = int(hours)
-    mins = int(mins)
-    if hours == 12:
-        if AM_PM == "AM":
-            hours = 0
+    try:
+        AM_PM = civi[-2:]
+        time = civi[0:-2]
+        hours, mins = time.split(":")
+        hours = int(hours)
+        mins = int(mins)
+        if hours == 12:
+            if AM_PM == "AM":
+                hours = 0
 
-    if AM_PM == "PM":
-        if hours != 12:
-            hours += 12
+        if AM_PM == "PM":
+            if hours != 12:
+                hours += 12
+    except:
+        raise Exception("Invalid Time Please Insert in the Following Format: X:XX(AM/PM)")
 
     return hours, mins
 
